@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BukuController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,9 @@ Route::get('/', function () {
 
 Route::get('/posts', [PostController::class, 'index']);
 Route::post('/posts', [PostController::class, 'store']);
+
+Route::get('/buku', [BukuController::class, 'index']);
+Route::post('/buku', [BukuController::class, 'store']);
+Route::get('buku/{id}', [BukuController::class, 'edit']);
+Route::put('buku/{id}', [BukuController::class, 'update']);
+Route::delete('buku/{id}', [BukuController::class, 'destroy']);

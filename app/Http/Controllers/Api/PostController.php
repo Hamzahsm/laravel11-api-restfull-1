@@ -12,7 +12,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\PostResource;
 
 //import Facade "Storage"
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Storage; 
 
 //import Facade "Validator"
 use Illuminate\Support\Facades\Validator;
@@ -26,11 +26,12 @@ class PostController extends Controller
      */
     public function index()
     {
-        //get all posts
+        // get all posts
         $posts = Post::latest()->paginate(5);
 
         //return collection of posts as a resource
         return new PostResource(true, 'List Data Posts', $posts);
+        // echo "index posts";
     }
 
     /**

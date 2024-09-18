@@ -12,6 +12,8 @@ class BukuController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    //controller untuk back end 
     public function index()
     {
         $data = Buku::orderBy('judul', 'asc')->get();

@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//posts
+//posts -> pengaturan backend
 Route::apiResource('/posts', App\Http\Controllers\Api\PostController::class); 
 // Route::get('buku', [BukuController::class, 'index']);
 // Route::get('buku/{id}', [BukuController::class, 'show']);
