@@ -26,4 +26,4 @@ Route::apiResource('/posts', App\Http\Controllers\Api\PostController::class);
 // Route::post('buku', [BukuController::class, 'store']);
 // Route::put('buku/{id}', [BukuController::class, 'update']);
 // Route::delete('buku/{id}', [BukuController::class, 'destroy']);
-Route::apiResource('/buku', BukuController::class); //menyederhanakan routing api
+Route::apiResource('/buku', BukuController::class)->middleware('checkHost'); //menyederhanakan routing api

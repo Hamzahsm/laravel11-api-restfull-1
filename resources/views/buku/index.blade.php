@@ -79,8 +79,8 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $i =1; ?>
-                    @foreach ($data as $item)
+                    <?php $i = $data['from']; ?> <!-- cek struktur api di post mana next page -->
+                    @foreach ($data['data'] as $item)
                     <tr>
                         <td>{{ $i }}</td>
                         <th class="col-md-4">{{ $item['judul'] }}</th>
@@ -100,6 +100,16 @@
                     @endforeach
                 </tbody>
             </table>
+
+            @if ($data['links'])
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    @foreach ($data['links'] as $item)
+                    <li class="page-item {{ $item['active'] ? 'active' : '' }}"><a class="page-link" href="{{ $item['url2'] }}">{!! $item['label'] !!}</a></li>   
+                    @endforeach
+                </ul>
+            </nav>
+            @endif
 
         </div>
         <!-- AKHIR DATA -->

@@ -7,20 +7,32 @@ use Illuminate\Http\Request;
 
 class BukuController extends Controller
 {
+    const API_URL = "http://127.0.0.1:8000/api/buku";
     /**
      * Display a listing of the resource.
      */
 
     // controller untuk front-end
-    public function index()
+    public function index(Request $request)
     {
         //
+        $current_url = url()->current();
         $client = new Client(); //guzzle http
-        $url = "http://127.0.0.1:8000/api/buku";
+        $url = static::API_URL;
+        if($request->input('page') != '') {
+            $url .= "?page=".$request->input('page');
+        }; //pagination link next page
         $response = $client->request('GET', $url);
         $content = $response->getBody()->getContents(); //mengambil content di body
         $contentArray = json_decode($content, true);
         $data = $contentArray['data']; //berhasil ambil data
+
+
+        foreach($data['links'] as $key => $value) { 
+            $data['links'][$key]['url2'] = str_replace(static::API_URL, $current_url, $value['url']);
+        }; //pagination url
+
+
         return view('buku.index', [
             'data' => $data,
         ]);
